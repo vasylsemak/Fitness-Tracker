@@ -32,11 +32,8 @@ const PORT = process.env.PORT || 3030
 async function startServer() {
   try {
     await db.sync()
-    app.listen(PORT, () => {
-      console.log(`Getting swole on port ${PORT}`)
-    })
-  } catch (err) {
-    console.error(err)
-  }
+    app.listen(PORT, () => console.log(`App is running on port ${PORT}!`))
+  } catch (err) { console.error(err) }
 }
+
 startServer()

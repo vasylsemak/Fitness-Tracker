@@ -48,7 +48,6 @@ const seedWorkouts = [
   },
 ]
 
-// Remember that we aren't able to use await outside of an async function.
 async function seed() {
   try {
     console.log('Seeding the database...')

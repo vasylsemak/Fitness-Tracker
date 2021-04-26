@@ -6,9 +6,6 @@
 
 <h3>- Using react-redux library, specificly its connect() method to pass data from axios as new props, forcing React component to re-render</h3>
 
-
-
-
 <ul>
   <li>npm install to download the dependencies</li>
   <li>npm run start-dev to run the server locally</li>

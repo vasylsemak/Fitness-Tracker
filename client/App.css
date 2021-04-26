@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: "Roboto", Helvetica, "Lucida Grande", sans-serif;
+  font-family: 'Roboto', Helvetica, 'Lucida Grande', sans-serif;
 }
 
 ul {
@@ -10,7 +10,7 @@ ul {
 
 body {
   margin: 0px;
-  background-color: #9EE4AE;
+  background-color: #fffafa;
 }
 
 .box {
@@ -18,12 +18,12 @@ body {
   overflow: hidden;
   margin: 0px 0px 8px 0px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
-  background-color: #EDF5E1;
+  background-color: #edf5e1;
 }
 
 .box-header {
   background-color: #389683;
-  color: #04386C;
+  color: #04386c;
   margin: 0px;
   padding-left: 10px;
   display: flex;

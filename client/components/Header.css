@@ -1,6 +1,9 @@
 #header {
-  color: #04386C;
-  background-color: #5CDA95;
+  color: #04386c;
+  background-color: #ff3e38;
   display: flex;
   justify-content: center;
+}
+#header h1 {
+  font-weight: 900;
 }
