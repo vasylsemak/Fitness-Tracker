@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import { SingleWorkout } from './SingleWorkout';
+import { SingleWorkout } from './SingleWorkout'
 import './ListWorkouts.css'
 
 const DisconnectedListWorkouts = props => {

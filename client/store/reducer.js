@@ -16,9 +16,6 @@ export const setWorkoutsThunk = () => async (dispatch) => {
   }
 }
 
-
-
-
 const initialState = { workouts: [] }
 
 const reducer = (state = initialState, action) => {
