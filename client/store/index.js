@@ -1,10 +1,13 @@
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
-import reducer from './store'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import reducer from './reducer'
 
 const store = createStore(
   reducer,
-  applyMiddleware(createLogger({ collapsed: true }))
+  composeWithDevTools(
+    applyMiddleware(createLogger({ collapsed: true }))
+  )
 )
 
 export default store
