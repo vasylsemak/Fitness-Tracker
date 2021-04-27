@@ -1,9 +1,23 @@
+import axios from 'axios'
+
 const SET_WORKOUTS = 'SET_WORKOUTS'
 
-export const setWorkoutsActionCreator = workouts => ({
+const setWorkoutsActionCreator = workouts => ({
   type: SET_WORKOUTS,
   payload: workouts
 })
+
+export const setWorkoutsThunk = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get('/api/workouts')
+    dispatch(setWorkoutsActionCreator(data))
+  } catch(err) {
+    console.log("NO data fetched from /API/WORKOUTS", err)
+  }
+}
+
+
+
 
 const initialState = { workouts: [] }
 
