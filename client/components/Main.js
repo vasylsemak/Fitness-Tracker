@@ -6,24 +6,11 @@ import { setWorkoutsThunk } from '../store/reducer'
 import './Main.css'
 
 class DisconectedMain extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { workouts: [] }
-  }
-
-  async componentDidMount() {
-    try {
-      const data = await this.props.fetchWorkouts()
-      this.setState(data)
-    } catch(err) {
-      console.log(err)
-    }
+  componentDidMount() {
+    this.props.fetchWorkouts()
   }
 
   render() {
-    // const workouts = this.state.workouts
-    console.log("--->", this.state)
-
     return (
       <div id="main">
         <Analytics />

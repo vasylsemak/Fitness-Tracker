@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { SingleWorkout } from './SingleWorkout'
 import './ListWorkouts.css'
 
-const DisconnectedListWorkouts = props => {
-  const { workouts } = props
-
+const DisconnectedListWorkouts = ({ workouts }) => {
   return (
     <div id="workouts">
       {workouts.map(workout => (
