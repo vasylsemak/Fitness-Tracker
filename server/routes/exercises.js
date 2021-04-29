@@ -22,6 +22,19 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async(req, res, next) => {
+  try {
+    const exercise = await Exercise.findByPk(+req.params.id)
+    if(!exercise.id) return res.sendStatus(404)
+    const updated = await exercise.update(req.body)
+
+    console.log("Updated -->", updated)
+    res.json(updated)
+  } catch(err) {
+    next(err)
+  }
+})
+
 // POST a new exercise
 router.post('/', async (req, res, next) => {
   try {
