@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const SET_WORKOUTS = 'SET_WORKOUTS'
 const REMOVE_EXERCISE = 'REMOVE_EXERCISE'
-// const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE'
+const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE'
 
 // Action creators
 const setWorkouts = workouts => ({
@@ -15,8 +15,14 @@ const removeExercise = id => ({
   id
 })
 
+const toggleComplete = (id, status) => ({
+  type: TOGGLE_COMPLETE,
+  id,
+  status
+})
 
-//      Thunks       -----------------------
+
+//   Thunks       ----------------------- /////////
 export const setWorkoutsThunk = () => async dispatch => {
   try {
     const { data } = await axios.get('/api/workouts')
@@ -36,13 +42,35 @@ export const removeExerciseThunk = id => async dispatch => {
   }
 }
 
+export const toggleCompleteThunk = (id, completed) => async dispatch => {
+  try {
+    await axios.patch(`/api/exercises/${id}`, { completed: completed })
+    dispatch(toggleComplete(id, completed))
+  } catch (err) {
+    console.log(err)
+  }
+}
 
+
+// STATE and REDUCER     --------------------//////
 const initialState = { workouts: [] }
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_WORKOUTS:
       return { ...state, workouts: action.payload }
+
+    case TOGGLE_COMPLETE:
+      const toggled = state.workouts.map(workout => {
+        if(workout.exercises.find(ex => ex.id === action.id)) {
+          const toggledEx = workout.exercises.map(ex => {
+            if(ex.id === action.id) return { ...ex, completed: action.status }
+            else return ex
+          })
+          return { ...workout, exercises: toggledEx }
+        } else return workout
+      })
+      return { ...state, workouts: toggled }
 
     case REMOVE_EXERCISE:
       const updated = state.workouts.map(workout => {

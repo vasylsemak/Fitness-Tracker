@@ -22,20 +22,20 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async(req, res, next) => {
+// PATCH (update) new exercise
+router.patch('/:id', async(req, res, next) => {
   try {
-    const exercise = await Exercise.findByPk(+req.params.id)
-    if(!exercise.id) return res.sendStatus(404)
-    const updated = await exercise.update(req.body)
-
-    console.log("Updated -->", updated)
-    res.json(updated)
+    await Exercise.update(
+      { completed: req.body.completed },
+      { where: { id: req.params.id } }
+    )
+    res.sendStatus(204)
   } catch(err) {
     next(err)
   }
 })
 
-// POST a new exercise
+// POST new exercise
 router.post('/', async (req, res, next) => {
   try {
     const { name, completed, description } = req.body

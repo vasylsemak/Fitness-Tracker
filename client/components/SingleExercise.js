@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { removeExerciseThunk } from '../store/reducer'
+import { removeExerciseThunk, toggleCompleteThunk } from '../store/reducer'
 import './SingleExercise.css'
 
 const SingleExerciseDisconnected = props => {
   const { id, name, duration, completed, description } = props.exercise
+  const { toggleComplete, removeExercise } = props
+
   return (
     <Fragment>
       <div className="exercise-name">
@@ -16,8 +18,9 @@ const SingleExerciseDisconnected = props => {
                 ? 'toggle-complete fas fa-check-circle'
                 : 'toggle-complete far fa-circle'
             }
+            onClick={() => toggleComplete(id, !completed)}
           />
-          <i className="fas fa-trash" onClick={() => props.removeExercise(id)} />
+          <i className="fas fa-trash" onClick={() => removeExercise(id)} />
         </div>
         <h3>{name}</h3>
         <span>{duration} min</span>
@@ -28,8 +31,11 @@ const SingleExerciseDisconnected = props => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  removeExercise: id => dispatch(removeExerciseThunk(id))
+  removeExercise: id => dispatch(removeExerciseThunk(id)),
+  toggleComplete: (id, status) => dispatch(toggleCompleteThunk(id, status))
 })
 
-export const SingleExercise =
-  connect(null, mapDispatchToProps)(SingleExerciseDisconnected)
+export const SingleExercise = connect(
+  null,
+  mapDispatchToProps
+)(SingleExerciseDisconnected)
