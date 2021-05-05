@@ -34,15 +34,14 @@ function calculateFavoriteExercise(exercises) {
   return favouriteExercise
 }
 
+function calculatePercentCompleted(exercises)  {
+  const total = exercises.length
+  const completedTotal = exercises.reduce((count, e) => (
+    e.completed ? count + 1 : count
+  ), 0)
 
-// const calculatePercentCompleted = exercises => {
-//   const total = exercises.length
-//   const completedTotal = exercises.reduce((count, e) => (
-//     e.completed ? count++ : count
-//   ), 0)
-
-//   return (completedTotal / total) * 100
-// }
+  return (completedTotal / total) * 100
+}
 
 
 export const Analytics = () => {
@@ -50,8 +49,7 @@ export const Analytics = () => {
   const exercises = collectExercisesFromWorkouts(workouts)
   const totalMinutes = countMinutesSpentExercising(exercises)
   const favouriteExercise = calculateFavoriteExercise(exercises)
-
-  // console.log('--->', favouriteExercise)
+  const percentage = calculatePercentCompleted(exercises)
 
   return (
     <div id="analytics">
@@ -70,7 +68,7 @@ export const Analytics = () => {
               </tr>
               <tr className="analytics-table-row">
                 <td className="analytics-name">Percentage Completed:</td>
-                <td id="percentage-completed">75%</td>
+                <td id="percentage-completed">{percentage}%</td>
               </tr>
             </tbody>
           </table>

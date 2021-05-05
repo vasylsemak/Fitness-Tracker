@@ -12,19 +12,19 @@ const seedWorkouts = [
         name: 'Bicycling',
         completed: true,
         description: 'Bike 10km along the lakefront',
-        duration: 30
+        duration: 45
       },
       {
         name: 'Weightlifting',
         completed: false,
         description: 'Free weights',
-        duration: 200
+        duration: 50
       },
       {
         name: 'Swimming',
         completed: true,
         description: 'Swim to the edge of the earth',
-        duration: 117
+        duration: 43
       },
     ]
   },
@@ -36,13 +36,13 @@ const seedWorkouts = [
         name: 'Swimming',
         completed: true,
         description: 'Swim across the canal 37 times',
-        duration: 4
+        duration: 15
       },
       {
         name: 'Dancing',
         completed: false,
         description: 'Swing for me',
-        duration: 19
+        duration: 63
       },
     ]
   },
