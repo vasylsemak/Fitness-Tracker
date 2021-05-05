@@ -14,20 +14,25 @@ function countMinutesSpentExercising(exercises) {
   }, 0)
 }
 
+function calculateFavoriteExercise(exercises) {
+  const totalExMap = {}
+  let longerTime = 0
+  let favouriteExercise = ''
 
-// function calculateFavoriteExercise(exercises) {
-//   const totalExMap = {}
-//   let longerTime = 0
+  exercises.forEach(e =>
+    !totalExMap[e.name] && e.completed
+      ? totalExMap[e.name] = e.duration
+      : totalExMap[e.name] += e.duration)
 
-//   exercises.forEach(e => !totalExMap[e.name]
-//     ? totalExMap[e.name] = e.duration : totalExMap[e.name] += e.duration)
+  for(let name in totalExMap) {
+    if(totalExMap[name] > longerTime) {
+      longerTime = totalExMap[name]
+      favouriteExercise = name
+    }
+  }
 
-//   for(let name in totalExMap) {
-//     if(totalExMap[name] > longerTime) longerTime = totalExMap[name]
-//   }
-
-//   return longerTime
-// }
+  return favouriteExercise
+}
 
 
 // const calculatePercentCompleted = exercises => {
@@ -44,9 +49,9 @@ export const Analytics = () => {
   const workouts = useSelector(state => state.workouts)
   const exercises = collectExercisesFromWorkouts(workouts)
   const totalMinutes = countMinutesSpentExercising(exercises)
-  // const favouriteExercise = calculateFavoriteExercise(exercises)
+  const favouriteExercise = calculateFavoriteExercise(exercises)
 
-  console.log('--->', totalMinutes)
+  // console.log('--->', favouriteExercise)
 
   return (
     <div id="analytics">
@@ -57,11 +62,11 @@ export const Analytics = () => {
             <tbody>
               <tr className="analytics-table-row">
                 <td className="analytics-name">Total Minutes Exercised:</td>
-                <td id="total-exercised">95</td>
+                <td id="total-exercised">{totalMinutes}</td>
               </tr>
               <tr className="analytics-table-row">
                 <td className="analytics-name">Favorite Exercise:</td>
-                <td>Running</td>
+                <td>{favouriteExercise}</td>
               </tr>
               <tr className="analytics-table-row">
                 <td className="analytics-name">Percentage Completed:</td>
